@@ -5,6 +5,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 import * as cors from "cors";
 import "reflect-metadata";
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 var indexRouter = require("./routes/index");
 
@@ -24,9 +25,16 @@ app.use(cors());
 app.use("/", indexRouter);
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function (req:VercelRequest , res:VercelResponse, next) {
   next(createError(404));
 });
+
+
+/* health check */
+app.get("/health", function (req, res) {
+  res.status(200);
+});
+
 
 // error handler
 app.use(function (err, req, res, next) {
