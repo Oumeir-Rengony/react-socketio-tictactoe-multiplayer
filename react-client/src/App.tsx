@@ -17,7 +17,7 @@ function App() {
 
   const connectedSocket = async () => {
     await socketService
-      .connect("https://socketio-tictactoe-server.herokuapp.com/")
+      .connect("https://tic-tac-toe-bmtu.onrender.com/")
       .catch((err) => {
         console.log("Error: ", err)
       });
